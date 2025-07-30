@@ -3,167 +3,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAM CHILLツ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍥FAM CHILLツ</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: black;
-      color: white;
-      overflow-x: hidden;
+      padding: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #1f0036, #0f2027, #2c5364);
+      background-size: 600% 600%;
+      animation: neonBg 15s ease infinite;
+      color: #fff;
+      text-align: center;
+    }
+    @keyframes neonBg {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .intro {
-      height: 100vh;
-      background: radial-gradient(circle at center, #0ff3, #000);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      animation: fadein 2s ease-in;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.8rem;
-      text-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
+      margin-top: 30vh;
+      font-size: 1.5rem;
     }
     .enter-btn {
-      padding: 12px 30px;
-      background: #0ff;
-      color: black;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
+      display: inline-block;
       margin-top: 20px;
-    }
-    .main {
-      display: none;
-      animation: fadein 2s ease-in;
-    }
-    section {
-      padding: 60px 20px;
-    }
-    .staff {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .card {
-      background: #111;
-      border-radius: 16px;
-      box-shadow: 0 0 10px #0ff;
-      padding: 20px;
-      width: 240px;
-      color: #0ff;
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-    audio {
-      display: none;
-    }
-    @keyframes fadein {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    ul.rules {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      max-width: 700px;
-      margin: auto;
-    }
-    ul.rules li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-    }
-    ul.rules li::before {
-      content: "✅";
-      position: absolute;
-      left: 0;
+      padding: 10px 25px;
+      font-size: 1rem;
+      background-color: cyan;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 0 15px cyan;
     }
   </style>
 </head>
 <body>
-  <div class="intro" id="intro">
-    <h1>🌌 Welcome to FAM CHILLツ</h1>
-    <p>Click to enter the neon drift...</p>
+  <div class="intro">
+    <h1>Click to enter 🍥FAM CHILLツ</h1>
     <button class="enter-btn" onclick="enterSite()">ENTER</button>
-  </div>
-
-  <audio id="bgm" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
-  <div class="main" id="mainContent">
-    <section>
-      <h2>🌟 Server Info</h2>
-      <p>10K+ members — Talk. Chill. Game. Make friends!</p>
-      <p>Just real vibes. Active voice, giveaways, bots, and fun!</p>
-    </section>
-
-    <section>
-      <h2>👑 Staff Team</h2>
-      <div class="staff">
-        <div class="card">
-          <img src="jann.png" alt="Jann">
-          <h3>Jann</h3>
-          <p>Founder</p>
-        </div>
-        <div class="card">
-          <img src="lyvisssynx.png" alt="LyVissSynx">
-          <h3>LyVissSynx</h3>
-          <p>Head Admin</p>
-        </div>
-        <div class="card">
-          <img src="habi.png" alt="Habi">
-          <h3>Habi</h3>
-          <p>Administrator</p>
-        </div>
-        <div class="card">
-          <img src="starking.png" alt="Starking">
-          <h3>Starking</h3>
-          <p>Administrator</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>📜 Server Rules</h2>
-      <ul class="rules">
-        <li>Don't spam: No walls of text, zalgo, caps or image floods.</li>
-        <li>No NSFW or gore content in any form.</li>
-        <li>Don't insult members, countries, religions etc.</li>
-        <li>No promotions unless approved by staff.</li>
-        <li>DM promotion strictly forbidden.</li>
-        <li>Don't impersonate staff or others.</li>
-        <li>No excessive swearing or personal attacks.</li>
-        <li>Stay on topic in each channel.</li>
-        <li>Respect voice chat behavior: no loud noises.</li>
-        <li>Ban reasons are not disclosed.</li>
-        <li>We do not handle personal disputes.</li>
-        <li>No dating or proposals (unless it's a joke).</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🔗 Join Now</h2>
-      <p><a href="https://discord.gg/famchill" style="color:#0ff;">discord.gg/famchill</a></p>
-    </section>
   </div>
 
   <script>
     function enterSite() {
-      document.getElementById("intro").style.display = "none";
-      document.getElementById("mainContent").style.display = "block";
-      document.getElementById("bgm").play();
+      window.location.href = "main.html"; // Main site will go here
     }
   </script>
 </body>
