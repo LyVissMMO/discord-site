@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Our Discord</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header, .section, footer {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 3.5rem;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px red;
+      animation: pulse 2s infinite;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: red;
+      text-shadow: 0 0 10px red;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: auto;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #fff;
+      background: red;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 20px red;
+      transition: transform 0.2s ease-in-out;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px red, 0 0 40px red;
+    }
+    .glow {
+      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red;
+    }
+    .staff {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px red;
+      width: 250px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .discord-embed {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px red; }
+      50% { text-shadow: 0 0 20px red, 0 0 40px red; }
+      100% { text-shadow: 0 0 10px red; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .card { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔥 Join Our Discord</h1>
+    <p>Welcome to our epic neon-themed community! Gaming, tech, memes, and more!</p>
+    <a href="https://discord.gg/YOURINVITELINK" target="_blank" class="btn">Join Now</a>
+  </header>
+
+  <section class="section">
+    <h2 class="glow">✨ Staff & Steam Profiles ✨</h2>
+    <div class="staff">
+      <div class="card">
+        <h3 class="glow">Admin LyViss</h3>
+        <p>Founder of the server. Runs events and manages moderation.</p>
+      </div>
+      <div class="card">
+        <h3 class="glow">Mod NeonStorm</h3>
+        <p>Handles game nights and helps new members get started.</p>
+      </div>
+      <div class="card">
+        <h3 class="glow">SteamPlayerX</h3>
+        <p>Top player in Rust and CS2. Streams weekly on Twitch.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="glow">🎮 Live Discord Preview</h2>
+    <div class="discord-embed">
+      <iframe src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="glow">💫 What We Offer</h2>
+    <p>Active voice chats, weekly events, custom bots, giveaways, and more. We're growing fast and welcoming new friends every day.</p>
+  </section>
+
+  <footer class="section">
+    <p class="glow">&copy; 2025 YourServerName. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('glow');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.section h2').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
