@@ -6,13 +6,19 @@
   <title>Join Our Discord</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #0d0d0d 0%, #000000 100%);
+      font-family: 'Press Start 2P', monospace;
+      
+    background: linear-gradient(135deg, #000000 0%, #0d0d0d 100%);
+    background-image: radial-gradient(circle at top left, rgba(255,0,120,0.2), transparent 60%), 
+                      radial-gradient(circle at bottom right, rgba(0,255,255,0.2), transparent 60%);
+
       background-size: 400% 400%;
       animation: bgMove 15s ease infinite;
       color: #fff;
@@ -40,7 +46,7 @@
     h1 {
       font-size: 3.5rem;
       color: red;
-      text-shadow: 0 0 10px red, 0 0 20px red;
+      text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #0ff;
       animation: pulse 2s infinite;
     }
     h2 {
@@ -56,6 +62,9 @@
       margin: auto;
     }
     .btn {
+      font-family: 'Press Start 2P', monospace;
+      letter-spacing: 1px;
+
       display: inline-block;
       margin-top: 40px;
       padding: 15px 30px;
@@ -74,6 +83,8 @@
       box-shadow: 0 0 25px red, 0 0 40px red;
     }
     .glow {
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+
       text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red;
     }
     .staff {
@@ -145,17 +156,203 @@
       border-bottom: none;
     }
     </style>
+
+  <script>
+    // Sound effect on hover
+    const hoverSound = new Audio('https://www.myinstants.com/media/sounds/menu-hover.mp3');
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          hoverSound.volume = 0.2;
+          hoverSound.play();
+        });
+      });
+    });
+  </script>
+  <style>
+    body {
+      cursor: none;
+    }
+    .cursor-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00ffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+    .wave-text span {
+      display: inline-block;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+    .wave-text span:nth-child(odd) {
+      animation-delay: 0.1s;
+    }
+    .wave-text span:nth-child(even) {
+      animation-delay: 0.3s;
+    }
+    @keyframes wave {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .intro-logo {
+      margin: 40px auto;
+      max-width: 300px;
+      animation: pulseLogo 3s infinite ease-in-out;
+    }
+    @keyframes pulseLogo {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+    .card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: rotateY(5deg) scale(1.03);
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    #music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #00ffff;
+      color: #fff;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-family: 'Press Start 2P', monospace;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+  </style>
 </head>
 <body>
+  <div id="tsparticles"></div>
+  <button id="music-toggle">🔇 Mute</button>
+  <script>
+    const music = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('music-toggle');
+    toggleBtn.addEventListener('click', () => {
+      if (music.muted) {
+        music.muted = false;
+        toggleBtn.textContent = '🔇 Mute';
+      } else {
+        music.muted = true;
+        toggleBtn.textContent = '🔊 Unmute';
+      }
+    });
+
+    ScrollReveal().reveal('.section', {
+      duration: 1000,
+      origin: 'bottom',
+      distance: '40px',
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00ffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 2 },
+        move: { enable: true, speed: 0.3 }
+      },
+      background: { color: "transparent" }
+    });
+  </script>
+
+<body>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    window.addEventListener('mousemove', e => {
+      dot.style.top = e.clientY + 'px';
+      dot.style.left = e.clientX + 'px';
+    });
+  </script>
+
+<body>
+  
+  <div style="text-align: center; margin-top: 60px;">
+    <img src="chill banner.jpg" class="intro-logo" alt="FAM CHILLツ Logo">
+    <h1 class="wave-text glow">
+      <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span><span> </span><span>T</span><span>O</span><span> </span><span>F</span><span>A</span><span>M</span><span> </span><span>C</span><span>H</span><span>I</span><span>L</span><span>L</span><span>ツ</span>
+    </h1>
+  </div>
   <header>
+
     <h1>🔥 Join Our Discord</h1>
     <p>Welcome to our epic neon-themed community! Gaming, tech, memes, and more!</p>
-    <a href="https://discord.gg/YOURINVITELINK" target="_blank" class="btn">Join Now</a>
+    <a href="https://discord.gg/famchill" target="_blank" class="btn">Join Now</a>
   </header>
 
   <section class="section">
     <h2 class="glow">✨ Staff & Steam Profiles ✨</h2>
     <div class="staff">
+
+      <div class="card">
+        <img src="jann.png" alt="Jann" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Jann</h3>
+        <p>Founder</p>
+        <a href="https://discord.com/users/688919955181273212" target="_blank" class="icon-btn" title="View Discord Profile">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+        </a>
+      </div>
+    
+      <div class="card">
+        <img src="lyvisssynx.png" alt="LyVissSynx" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">LyVissSynx</h3>
+        <p>Head Admin</p>
+        <a href="https://discord.com/users/972777805760839690" target="_blank" class="icon-btn" title="View Discord Profile">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+        </a>
+      </div>
+    
+      <div class="card">
+        <img src="habi.png" alt="Habi" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Habi</h3>
+        <p>Administrator</p>
+        <a href="https://discord.com/users/372757724003434506" target="_blank" class="icon-btn" title="View Discord Profile">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+        </a>
+      </div>
+    
+      <div class="card">
+        <img src="starking.png" alt="Starking" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Starking</h3>
+        <p>Administrator</p>
+        <a href="https://discord.com/users/343304404901953540" target="_blank" class="icon-btn" title="View Discord Profile">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+        </a>
+      </div>
+    
 
       <div class="card">
         <img src="lyvisssynx.png" alt="LyVissSynx" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
@@ -216,12 +413,7 @@
     </div>
   </section>
 
-  <section class="section">
-    <h2 class="glow">🎮 Live Discord Preview</h2>
-    <div class="discord-embed">
-      <iframe src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-    </div>
-  </section>
+  
 
   <section class="section">
     <h2 class="glow">💫 What We Offer</h2>
