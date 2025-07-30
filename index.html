@@ -4,15 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAM CHILLツ - Final Neon Build</title>
+  <title>FAM CHILLツ</title>
   <style>
     body {
       margin: 0;
-      background: #000;
       font-family: 'Orbitron', sans-serif;
-      color: #0ff;
+      background: radial-gradient(circle at center, #0ff3, #000);
+      color: white;
       text-align: center;
-      padding: 60px 20px;
+      overflow-x: hidden;
+    }
+    .intro {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadein 2s ease-in;
     }
     h1 {
       font-size: 2.8rem;
@@ -24,10 +32,100 @@
       max-width: 700px;
       margin: 20px auto;
     }
+    .enter-btn {
+      padding: 12px 30px;
+      background: #0ff;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+    section {
+      padding: 60px 20px;
+    }
+    .staff {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: #111;
+      border-radius: 16px;
+      box-shadow: 0 0 10px #0ff;
+      padding: 20px;
+      width: 250px;
+      color: #0ff;
+    }
+    audio {
+      display: none;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
-  <h1>🔥 Final Neon FAM CHILLツ Website Ready</h1>
-  <p>All features like music, animations, and team info are packed in. Upload this to GitHub Pages and go live instantly.</p>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="intro" id="intro">
+    <h1>🌐 Welcome to FAM CHILLツ</h1>
+    <p>Click the button to ENTER the neon world.</p>
+    <button class="enter-btn" onclick="enterSite()">ENTER</button>
+  </div>
+
+  <div id="mainContent" style="display:none;">
+    <section>
+      <h2>🚀 Server Info</h2>
+      <p>10K+ members — Talk. Chill. Game. Make friends!</p>
+      <p>✅ No spam. ✅ No drama. ✅ Just real vibes.</p>
+    </section>
+
+    <section>
+      <h2>👑 Staff Team</h2>
+      <div class="staff">
+        <div class="card">
+          <h3>Jann</h3>
+          <p>Founder</p>
+        </div>
+        <div class="card">
+          <h3>LyVissSynx</h3>
+          <p>Head Admin</p>
+        </div>
+        <div class="card">
+          <h3>Habi</h3>
+          <p>Administrator</p>
+        </div>
+        <div class="card">
+          <h3>Starking</h3>
+          <p>Administrator</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📜 Server Rules</h2>
+      <p>1. Don't spam. 2. No NSFW. 3. Don't harass others. 4. No advertising. 5. Don't impersonate anyone.<br>6. Swearing is not allowed. 7. Keep topics in correct channels. 8. Respect voice chat rules.</p>
+    </section>
+
+    <section>
+      <h2>🔗 Join Now</h2>
+      <p><a href="https://discord.gg/famchill" style="color:#0ff;">discord.gg/famchill</a></p>
+    </section>
+  </div>
+
+  <script>
+    function enterSite() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
+  </script>
 </body>
 </html>
