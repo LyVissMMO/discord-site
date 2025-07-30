@@ -3,61 +3,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🍥FAM CHILLツ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🍥FAM CHILLツ Intro</title>
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle at center, #0f0f0f, #000000);
-      color: #fff;
-      font-family: 'Press Start 2P', cursive;
-      text-align: center;
-      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      height: 100vh;
+      text-align: center;
     }
-
-    .intro-text {
-      font-size: 1rem;
-      margin-bottom: 30px;
+    h1 {
+      font-size: 2rem;
       text-shadow: 0 0 10px cyan;
     }
-
     button {
+      margin-top: 20px;
       padding: 12px 30px;
       font-size: 1rem;
-      border: 2px solid cyan;
-      background-color: transparent;
-      color: cyan;
+      background-color: cyan;
+      color: black;
+      border: none;
       border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 10px cyan;
+      box-shadow: 0 0 15px cyan;
     }
-
-    button:hover {
-      background-color: cyan;
-      color: #000;
-    }
-
     audio {
       display: none;
     }
   </style>
 </head>
 <body>
-  <h1 class="intro-text">Click to enter 🍥FAM CHILLツ</h1>
-  <button onclick="startSite()">ENTER</button>
+  <h1>Click to enter 🍥FAM CHILLツ</h1>
+  <button onclick="enterSite()">ENTER</button>
   <audio id="bgMusic" autoplay loop>
-    <source src="Pernalonga-Detroit.mp3" type="audio/mpeg">
+    <source src="Pernalonga-Detroit.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
-    function startSite() {
-      document.getElementById('bgMusic').play();
+    function enterSite() {
+      const music = document.getElementById('bgMusic');
+      music.play();
       window.location.href = 'main.html';
     }
   </script>
