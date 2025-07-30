@@ -1,481 +1,116 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join Our Discord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAM CHILLツ - Enter the Drift</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-    * {
-      box-sizing: border-box;
-    }
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Press Start 2P', monospace;
-      
-    background: linear-gradient(135deg, #000000 0%, #0d0d0d 100%);
-    background-image: radial-gradient(circle at top left, rgba(255,0,120,0.2), transparent 60%), 
-                      radial-gradient(circle at bottom right, rgba(0,255,255,0.2), transparent 60%);
-
-      background-size: 400% 400%;
-      animation: bgMove 15s ease infinite;
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      font-family: monospace;
     }
-    body::before {
-      content: "";
-      background: url('chill banner.jpg') center center no-repeat;
-      background-size: contain;
-      opacity: 0.03;
+    canvas {
+      display: block;
+    }
+    #intro-screen {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-    }
-    header, .section, footer {
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at center, #000000 0%, #0d0d0d 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
       text-align: center;
-      padding: 60px 20px;
-      position: relative;
-      z-index: 1;
+      transition: opacity 1s ease;
+    }
+    #intro-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
     h1 {
-      font-size: 3.5rem;
-      color: red;
-      text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #0ff;
-      animation: pulse 2s infinite;
+      font-size: 2em;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
     }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: red;
-      text-shadow: 0 0 10px red;
-    }
-    p {
-      font-size: 1.1rem;
-      color: #ccc;
-      max-width: 700px;
-      margin: auto;
-    }
-    .btn {
-      font-family: 'Press Start 2P', monospace;
-      letter-spacing: 1px;
-
-      display: inline-block;
-      margin-top: 40px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+    button {
+      margin-top: 20px;
+      background: none;
+      border: 2px solid #0ff;
+      padding: 10px 20px;
       color: #fff;
-      background: red;
-      border: none;
-      border-radius: 10px;
+      font-size: 14px;
       cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 0 20px red;
-      transition: transform 0.2s ease-in-out;
+      text-shadow: 0 0 5px #f0f;
     }
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px red, 0 0 40px red;
-    }
-    .glow {
-      text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 20px #00ffff;
-
-      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red;
-    }
-    .staff {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px 0;
-    }
-    .card {
-      background: rgba(20, 20, 20, 0.6);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 30px rgba(255, 0, 0, 0.2);
-      width: 250px;
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .discord-embed {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    @keyframes pulse {
-      0% { text-shadow: 0 0 10px red; }
-      50% { text-shadow: 0 0 20px red, 0 0 40px red; }
-      100% { text-shadow: 0 0 10px red; }
-    }
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      .card {
-      background: rgba(20, 20, 20, 0.6);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.05); width: 90%; }
-    }
-  
-    .rules-box, .info-box {
-      background: rgba(20, 20, 20, 0.6);
-      border-radius: 16px;
-      padding: 25px;
-      max-width: 800px;
-      margin: 30px auto;
-      text-align: left;
-      box-shadow: 0 0 10px rgba(255,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-    }
-    .rules-box ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    .rules-box li {
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .rules-box li:last-child {
-      border-bottom: none;
-    }
-    </style>
-
-  <script>
-    // Sound effect on hover
-    const hoverSound = new Audio('https://www.myinstants.com/media/sounds/menu-hover.mp3');
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          hoverSound.volume = 0.2;
-          hoverSound.play();
-        });
-      });
-    });
-  </script>
-  <style>
-    body {
-      cursor: none;
-    }
-    .cursor-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #00ffff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-    }
-    .wave-text span {
-      display: inline-block;
-      animation: wave 1.5s ease-in-out infinite;
-    }
-    .wave-text span:nth-child(odd) {
-      animation-delay: 0.1s;
-    }
-    .wave-text span:nth-child(even) {
-      animation-delay: 0.3s;
-    }
-    @keyframes wave {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-    .intro-logo {
-      margin: 40px auto;
-      max-width: 300px;
-      animation: pulseLogo 3s infinite ease-in-out;
-    }
-    @keyframes pulseLogo {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
-    }
-    .card {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: rotateY(5deg) scale(1.03);
-    }
-  </style>
-
-  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-  <style>
-    #music-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 999;
-      background: rgba(0, 0, 0, 0.5);
-      border: 2px solid #00ffff;
-      color: #fff;
-      padding: 8px 14px;
-      font-size: 12px;
-      font-family: 'Press Start 2P', monospace;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+    #bg-music {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div id="tsparticles"></div>
-  <button id="music-toggle">🔇 Mute</button>
+  <div id="intro-screen">
+    <h1>WELCOME TO FAM CHILLツ</h1>
+    <p>Click to Enter the Neon Drift</p>
+    <button onclick="startExperience()">ENTER</button>
+  </div>
+
+  <audio id="bg-music" src="music.mp3" loop autoplay></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.151.3/build/three.min.js"></script>
   <script>
-    const music = document.getElementById('bg-music');
-    const toggleBtn = document.getElementById('music-toggle');
-    toggleBtn.addEventListener('click', () => {
-      if (music.muted) {
-        music.muted = false;
-        toggleBtn.textContent = '🔇 Mute';
-      } else {
-        music.muted = true;
-        toggleBtn.textContent = '🔊 Unmute';
+    let scene, camera, renderer, stars = [];
+
+    function init() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+      camera.position.z = 5;
+
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      const geometry = new THREE.SphereGeometry(0.1, 24, 24);
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+
+      for (let i = 0; i < 500; i++) {
+        let star = new THREE.Mesh(geometry, material);
+        star.position.x = (Math.random() - 0.5) * 100;
+        star.position.y = (Math.random() - 0.5) * 100;
+        star.position.z = (Math.random() - 0.5) * 100;
+        scene.add(star);
+        stars.push(star);
       }
-    });
 
-    ScrollReveal().reveal('.section', {
-      duration: 1000,
-      origin: 'bottom',
-      distance: '40px',
-      easing: 'ease-in-out',
-      reset: false
-    });
+      animate();
+    }
 
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: false },
-      particles: {
-        number: { value: 80 },
-        color: { value: "#00ffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3 },
-        size: { value: 2 },
-        move: { enable: true, speed: 0.3 }
-      },
-      background: { color: "transparent" }
-    });
-  </script>
+    function animate() {
+      requestAnimationFrame(animate);
+      stars.forEach(star => star.position.z += 0.2);
+      renderer.render(scene, camera);
+    }
 
-<body>
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <script>
-    const dot = document.getElementById('cursor-dot');
-    window.addEventListener('mousemove', e => {
-      dot.style.top = e.clientY + 'px';
-      dot.style.left = e.clientX + 'px';
-    });
-  </script>
+    function startExperience() {
+      document.getElementById('intro-screen').classList.add('hidden');
+      document.getElementById('bg-music').volume = 0.2;
+      document.getElementById('bg-music').play();
+      init();
+    }
 
-<body>
-  
-  <div style="text-align: center; margin-top: 60px;">
-    <img src="chill banner.jpg" class="intro-logo" alt="FAM CHILLツ Logo">
-    <h1 class="wave-text glow">
-      <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span><span> </span><span>T</span><span>O</span><span> </span><span>F</span><span>A</span><span>M</span><span> </span><span>C</span><span>H</span><span>I</span><span>L</span><span>L</span><span>ツ</span>
-    </h1>
-  </div>
-  <header>
-
-    <h1>🔥 Join Our Discord</h1>
-    <p>Welcome to our epic neon-themed community! Gaming, tech, memes, and more!</p>
-    <a href="https://discord.gg/famchill" target="_blank" class="btn">Join Now</a>
-  </header>
-
-  <section class="section">
-    <h2 class="glow">✨ Staff & Steam Profiles ✨</h2>
-    <div class="staff">
-
-      <div class="card">
-        <img src="jann.png" alt="Jann" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Jann</h3>
-        <p>Founder</p>
-        <a href="https://discord.com/users/688919955181273212" target="_blank" class="icon-btn" title="View Discord Profile">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-        </a>
-      </div>
-    
-      <div class="card">
-        <img src="lyvisssynx.png" alt="LyVissSynx" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">LyVissSynx</h3>
-        <p>Head Admin</p>
-        <a href="https://discord.com/users/972777805760839690" target="_blank" class="icon-btn" title="View Discord Profile">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-        </a>
-      </div>
-    
-      <div class="card">
-        <img src="habi.png" alt="Habi" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Habi</h3>
-        <p>Administrator</p>
-        <a href="https://discord.com/users/372757724003434506" target="_blank" class="icon-btn" title="View Discord Profile">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-        </a>
-      </div>
-    
-      <div class="card">
-        <img src="starking.png" alt="Starking" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Starking</h3>
-        <p>Administrator</p>
-        <a href="https://discord.com/users/343304404901953540" target="_blank" class="icon-btn" title="View Discord Profile">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-        </a>
-      </div>
-    
-
-      <div class="card">
-        <img src="lyvisssynx.png" alt="LyVissSynx" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">LyVissSynx</h3>
-        <p>Head Admin</p>
-        
-<a href="https://discord.com/users/972777805760839690" target="_blank" class="icon-btn" title="View Discord Profile">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-</a>
-
-      </div>
-    
-      <div class="card">
-        <img src="jann.png" alt="Jann" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Jann</h3>
-        <p>Founder</p>
-        
-<a href="https://discord.com/users/688919955181273212" target="_blank" class="icon-btn" title="View Discord Profile">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-</a>
-
-      </div>
-    
-      <div class="card">
-        <img src="habi.png" alt="Habi" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Habi</h3>
-        <p>Administrator</p>
-        
-<a href="https://discord.com/users/372757724003434506" target="_blank" class="icon-btn" title="View Discord Profile">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-</a>
-
-      </div>
-    
-      <div class="card">
-        <img src="starking.png" alt="Starking" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-        <h3 class="glow">Starking</h3>
-        <p>Administrator</p>
-        
-<a href="https://discord.com/users/343304404901953540" target="_blank" class="icon-btn" title="View Discord Profile">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
-</a>
-
-      </div>
-    
-      <div class="card">
-        <h3 class="glow">Admin LyViss</h3>
-        <p>Founder of the server. Runs events and manages moderation.</p>
-      </div>
-      <div class="card">
-        <h3 class="glow">Mod NeonStorm</h3>
-        <p>Handles game nights and helps new members get started.</p>
-      </div>
-      <div class="card">
-        <h3 class="glow">SteamPlayerX</h3>
-        <p>Top player in Rust and CS2. Streams weekly on Twitch.</p>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <section class="section">
-    <h2 class="glow">💫 What We Offer</h2>
-    <p>Active voice chats, weekly events, custom bots, giveaways, and more. We're growing fast and welcoming new friends every day.</p>
-  </section>
-
-  
-<section class="section">
-  <h2 class="glow">📜 Server Rules</h2>
-  <div class="rules-box">
-    <ul>
-      <li><strong>[1]</strong> Don't spam. <br><small>(Includes song lyrics, zalgo, excessive caps, GIF/link spam, etc.)</small></li>
-      <li><strong>[2]</strong> No NSFW/Gore/18+ content or avatars/usernames.</li>
-      <li><strong>[3]</strong> Don't harass or insult members, countries, or religions.</li>
-      <li><strong>[4]</strong> No promotion/selling unless approved by staff.</li>
-      <li><strong>[5]</strong> No DM promotions — strictly prohibited.</li>
-      <li><strong>[6]</strong> Don't impersonate YouTubers, staff, or users.</li>
-      <li><strong>[7]</strong> Swearing is not allowed, especially in personal attacks.</li>
-      <li><strong>[8]</strong> Stay on topic within each channel.</li>
-      <li><strong>[9]</strong> Don’t be disruptive in voice chats (earrape, inappropriate music).</li>
-      <li><strong>[10]</strong> We do not reveal the reason for bans.</li>
-      <li><strong>[11]</strong> We’re not responsible for your personal disputes.</li>
-      <li><strong>[12]</strong> No Dating or Love-Proposing (fun/friendly jokes are okay).</li>
-    </ul>
-  </div>
-</section>
-
-
-<section class="section">
-  <h2 class="glow">🌟 Why Join FAM CHILLツ?</h2>
-  <div class="info-box">
-    <p>Welcome to <strong>FAM CHILLツ</strong> — your ultimate Discord hub for chill vibes, fun convos, and squad gaming!</p>
-    <p><strong>🗨️ Type:</strong> Chilling • Talking • Gaming<br>
-       <strong>🎮 Members:</strong> 10K+ active legends</p>
-    <p>🔥 Hang out in voice chat, share memes, or jump into a game with the crew.<br>
-    🚀 Join events, meet cool people, and vibe in one of Discord’s fastest-growing chill spaces.</p>
-    <p class="glow" style="color: #ff4d4d;">You're free to vibe, joke, chill, and do your thing — just follow the rules and respect the space 😎🔥</p>
-  </div>
-</section>
-
-<footer class="section">
-    <p class="glow">&copy; 2025 YourServerName. All rights reserved.</p>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('glow');
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.section h2').forEach(el => observer.observe(el));
-  </script>
-
-  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const music = document.getElementById('bg-music');
-      music.volume = 0.2; // 20% volume
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
     });
   </script>
 </body>
-
 </html>
