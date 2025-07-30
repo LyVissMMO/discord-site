@@ -12,13 +12,30 @@
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background-color: #000;
+      background: radial-gradient(circle at center, #0d0d0d 0%, #000000 100%);
+      background-size: 400% 400%;
+      animation: bgMove 15s ease infinite;
       color: #fff;
       overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      background: url('chill banner.jpg') center center no-repeat;
+      background-size: contain;
+      opacity: 0.03;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
     }
     header, .section, footer {
       text-align: center;
       padding: 60px 20px;
+      position: relative;
+      z-index: 1;
     }
     h1 {
       font-size: 3.5rem;
@@ -67,10 +84,14 @@
       padding: 20px 0;
     }
     .card {
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       background: #111;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 0 15px red;
+      box-shadow: 0 4px 30px rgba(255, 0, 0, 0.2);
       width: 250px;
       transition: transform 0.3s;
     }
@@ -87,11 +108,43 @@
       50% { text-shadow: 0 0 20px red, 0 0 40px red; }
       100% { text-shadow: 0 0 10px red; }
     }
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     @media (max-width: 600px) {
       h1 { font-size: 2.2rem; }
-      .card { width: 90%; }
+      .card {
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05); width: 90%; }
     }
-  </style>
+  
+    .rules-box, .info-box {
+      background: rgba(20, 20, 20, 0.6);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 800px;
+      margin: 30px auto;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(255,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+    }
+    .rules-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .rules-box li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .rules-box li:last-child {
+      border-bottom: none;
+    }
+    </style>
 </head>
 <body>
   <header>
@@ -103,6 +156,51 @@
   <section class="section">
     <h2 class="glow">✨ Staff & Steam Profiles ✨</h2>
     <div class="staff">
+
+      <div class="card">
+        <img src="lyvisssynx.png" alt="LyVissSynx" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">LyVissSynx</h3>
+        <p>Head Admin</p>
+        
+<a href="https://discord.com/users/972777805760839690" target="_blank" class="icon-btn" title="View Discord Profile">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+</a>
+
+      </div>
+    
+      <div class="card">
+        <img src="jann.png" alt="Jann" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Jann</h3>
+        <p>Founder</p>
+        
+<a href="https://discord.com/users/688919955181273212" target="_blank" class="icon-btn" title="View Discord Profile">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+</a>
+
+      </div>
+    
+      <div class="card">
+        <img src="habi.png" alt="Habi" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Habi</h3>
+        <p>Administrator</p>
+        
+<a href="https://discord.com/users/372757724003434506" target="_blank" class="icon-btn" title="View Discord Profile">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+</a>
+
+      </div>
+    
+      <div class="card">
+        <img src="starking.png" alt="Starking" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+        <h3 class="glow">Starking</h3>
+        <p>Administrator</p>
+        
+<a href="https://discord.com/users/343304404901953540" target="_blank" class="icon-btn" title="View Discord Profile">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Icon" style="width:32px; height:32px;">
+</a>
+
+      </div>
+    
       <div class="card">
         <h3 class="glow">Admin LyViss</h3>
         <p>Founder of the server. Runs events and manages moderation.</p>
@@ -130,12 +228,45 @@
     <p>Active voice chats, weekly events, custom bots, giveaways, and more. We're growing fast and welcoming new friends every day.</p>
   </section>
 
-  <footer class="section">
+  
+<section class="section">
+  <h2 class="glow">📜 Server Rules</h2>
+  <div class="rules-box">
+    <ul>
+      <li><strong>[1]</strong> Don't spam. <br><small>(Includes song lyrics, zalgo, excessive caps, GIF/link spam, etc.)</small></li>
+      <li><strong>[2]</strong> No NSFW/Gore/18+ content or avatars/usernames.</li>
+      <li><strong>[3]</strong> Don't harass or insult members, countries, or religions.</li>
+      <li><strong>[4]</strong> No promotion/selling unless approved by staff.</li>
+      <li><strong>[5]</strong> No DM promotions — strictly prohibited.</li>
+      <li><strong>[6]</strong> Don't impersonate YouTubers, staff, or users.</li>
+      <li><strong>[7]</strong> Swearing is not allowed, especially in personal attacks.</li>
+      <li><strong>[8]</strong> Stay on topic within each channel.</li>
+      <li><strong>[9]</strong> Don’t be disruptive in voice chats (earrape, inappropriate music).</li>
+      <li><strong>[10]</strong> We do not reveal the reason for bans.</li>
+      <li><strong>[11]</strong> We’re not responsible for your personal disputes.</li>
+      <li><strong>[12]</strong> No Dating or Love-Proposing (fun/friendly jokes are okay).</li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="section">
+  <h2 class="glow">🌟 Why Join FAM CHILLツ?</h2>
+  <div class="info-box">
+    <p>Welcome to <strong>FAM CHILLツ</strong> — your ultimate Discord hub for chill vibes, fun convos, and squad gaming!</p>
+    <p><strong>🗨️ Type:</strong> Chilling • Talking • Gaming<br>
+       <strong>🎮 Members:</strong> 10K+ active legends</p>
+    <p>🔥 Hang out in voice chat, share memes, or jump into a game with the crew.<br>
+    🚀 Join events, meet cool people, and vibe in one of Discord’s fastest-growing chill spaces.</p>
+    <p class="glow" style="color: #ff4d4d;">You're free to vibe, joke, chill, and do your thing — just follow the rules and respect the space 😎🔥</p>
+  </div>
+</section>
+
+<footer class="section">
     <p class="glow">&copy; 2025 YourServerName. All rights reserved.</p>
   </footer>
 
   <script>
-    // Scroll animations
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -143,8 +274,16 @@
         }
       });
     }, { threshold: 0.3 });
-
     document.querySelectorAll('.section h2').forEach(el => observer.observe(el));
   </script>
+
+  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('bg-music');
+      music.volume = 0.2; // 20% volume
+    });
+  </script>
 </body>
+
 </html>
