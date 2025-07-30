@@ -3,24 +3,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main FAM CHILL Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🍥FAM CHILLツ - Main</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
     body {
       margin: 0;
-      padding: 40px;
-      font-family: Arial, sans-serif;
+      font-family: 'Orbitron', sans-serif;
       background: #000;
-      color: #fff;
-      text-align: center;
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
-    h1 {
-      text-shadow: 0 0 10px cyan;
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h1, h2 {
+      font-size: 2rem;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+    }
+    p, li {
+      max-width: 800px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      background: #5865F2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #5865F2;
+      text-decoration: none;
+    }
+    .staff-list {
+      list-style: none;
+      padding: 0;
+    }
+    .staff-list li {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+    .rules {
+      text-align: left;
+      padding-left: 0;
+      list-style-position: inside;
+      max-width: 800px;
+    }
+    canvas#stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <h1>🚧 Main FAM CHILLツ Page Coming Soon</h1>
-  <p>This is the main page after entering. All staff, rules, and scroll effects will load here.</p>
+
+<canvas id="stars"></canvas>
+
+<section id="join">
+  <h1>🔥 Join FAM CHILLツ</h1>
+  <p>Chill. Talk. Game. Vibe. With over <strong>10,000+ members</strong>, you’re never alone.</p>
+  <a href="https://discord.gg/famchill" target="_blank" class="btn">Join Now</a>
+</section>
+
+<section id="staff">
+  <h2>👑 Staff Team</h2>
+  <ul class="staff-list">
+    <li><strong>Jann</strong> — Founder</li>
+    <li><strong>LyVissSynx</strong> — Head Admin</li>
+    <li><strong>Habi</strong> — Administrator</li>
+    <li><strong>Starking</strong> — Administrator</li>
+  </ul>
+</section>
+
+<section id="rules">
+  <h2>📜 Server Rules</h2>
+  <ul class="rules">
+    <li>1. Don't spam: No zalgo, copy-paste, or emoji spam.</li>
+    <li>2. No NSFW/gore in any form.</li>
+    <li>3. No harassment or hate speech.</li>
+    <li>4. Don’t advertise without staff approval.</li>
+    <li>5. DM promotion is strictly forbidden.</li>
+    <li>6. No impersonating staff or users.</li>
+    <li>7. No excessive swearing or abuse.</li>
+    <li>8. Stay on-topic per channel.</li>
+    <li>9. Respect voice channels.</li>
+    <li>10. Ban reasons are private.</li>
+    <li>11. We're not responsible for personal fights.</li>
+    <li>12. No dating/proposing — unless fun/joke only.</li>
+  </ul>
+</section>
+
+<section id="final">
+  <h2>🎮 Ready to Chill?</h2>
+  <p>🔥 FAM CHILLツ is live 24/7 — events, memes, and friends await you!</p>
+  <a href="https://discord.gg/famchill" target="_blank" class="btn">Enter the Vibe →</a>
+</section>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+  // Starfield animation
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let stars = Array(150).fill().map(() => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    z: Math.random() * canvas.width
+  }));
+
+  function moveStars() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+
+    stars.forEach(star => {
+      star.z -= 1;
+      if (star.z <= 0) star.z = canvas.width;
+
+      let k = 128.0 / star.z;
+      let x = star.x * k + canvas.width / 2;
+      let y = star.y * k + canvas.height / 2;
+
+      if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+        let size = (1 - star.z / canvas.width) * 3;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    requestAnimationFrame(moveStars);
+  }
+
+  moveStars();
+</script>
 </body>
 </html>
