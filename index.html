@@ -5,50 +5,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🍥FAM CHILLツ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(135deg, #1f0036, #0f2027, #2c5364);
-      background-size: 600% 600%;
-      animation: neonBg 15s ease infinite;
+      background: radial-gradient(circle at center, #0f0f0f, #000000);
       color: #fff;
+      font-family: 'Press Start 2P', cursive;
       text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-    @keyframes neonBg {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-    .intro {
-      margin-top: 30vh;
-      font-size: 1.5rem;
-    }
-    .enter-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 25px;
+
+    .intro-text {
       font-size: 1rem;
-      background-color: cyan;
-      border: none;
-      border-radius: 5px;
-      color: #000;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      border: 2px solid cyan;
+      background-color: transparent;
+      color: cyan;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 15px cyan;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    button:hover {
+      background-color: cyan;
+      color: #000;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="intro">
-    <h1>Click to enter 🍥FAM CHILLツ</h1>
-    <button class="enter-btn" onclick="enterSite()">ENTER</button>
-  </div>
+  <h1 class="intro-text">Click to enter 🍥FAM CHILLツ</h1>
+  <button onclick="startSite()">ENTER</button>
+  <audio id="bgMusic" autoplay loop>
+    <source src="Pernalonga-Detroit.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    function enterSite() {
-      window.location.href = "main.html"; // Main site will go here
+    function startSite() {
+      document.getElementById('bgMusic').play();
+      window.location.href = 'main.html';
     }
   </script>
 </body>
